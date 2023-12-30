@@ -1,5 +1,5 @@
 # sna_link_prediction
-Repo contains solution of the Social Network Analysis group assignment
+This repo contains the code for the Social Network Analysis group assignment (topic 11)
 
 ## How to run
 Install requirements: `conda env export > conda_environment.yml`
@@ -15,4 +15,4 @@ https://docs.google.com/document/d/1lZjLGZh1AX5KK8YthJvU6QkadWM9hi7HhJdT4QbSdko/
 ## Google slides
 https://docs.google.com/presentation/d/1qbyRYBgFaQkx8Nz4ey3AZ-YIaqeNvosIZGN6IZpmK1A/edit?usp=sharing
 
-Next meeting: 20:00 on Monday, 4th December
+Next meeting: At some point before the Christmas holidays.
