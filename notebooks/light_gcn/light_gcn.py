@@ -216,6 +216,31 @@ def NDCGatK_r(groundTruth, r, k):
     return torch.mean(ndcg).item()
 
 
+def calculate_hit_rate(groundTruth, r, k):
+    """Computes hit rate @ k
+
+    Args:
+        groundTruth (list): list of lists containing highly rated items of each user
+        r (list): list of lists indicating whether each top k item recommended to each user
+            is a top k ground truth item or not
+        k (int): determines the top k items to compute ndcg on
+
+    Returns:
+        float: hit rate @ k
+    """
+    assert len(r) == len(groundTruth)
+
+    test_matrix = torch.zeros((len(r), k))
+
+    for i, items in enumerate(groundTruth):
+        length = min(len(items), k)
+        test_matrix[i, :length] = 1
+    max_r = test_matrix
+    hit_rate = torch.sum(r * max_r, axis=1)
+    hit_rate[torch.isnan(hit_rate)] = 0.0
+    return torch.mean(hit_rate).item()
+
+
 # wrapper function to get evaluation metrics
 def get_metrics(model, edge_index, exclude_edge_indices, k):
     """Computes the evaluation metrics: recall, precision, and ndcg @ k
@@ -269,8 +294,9 @@ def get_metrics(model, edge_index, exclude_edge_indices, k):
 
     recall, precision = RecallPrecision_ATk(test_user_pos_items_list, r, k)
     ndcg = NDCGatK_r(test_user_pos_items_list, r, k)
+    hit_rate = calculate_hit_rate(test_user_pos_items_list, r, k)
 
-    return recall, precision, ndcg
+    return recall, precision, ndcg, hit_rate
 
 
 # wrapper function to evaluate model
@@ -295,6 +321,7 @@ def evaluation(
         sparse_edge_index
     )
     edges = structured_negative_sampling(edge_index, contains_neg_self_loops=False)
+
     user_indices, pos_item_indices, neg_item_indices = edges[0], edges[1], edges[2]
     users_emb_final, users_emb_0 = (
         users_emb_final[user_indices],
@@ -319,9 +346,11 @@ def evaluation(
         lambda_val,
     ).item()
 
-    recall, precision, ndcg = get_metrics(model, edge_index, exclude_edge_indices, k)
+    recall, precision, ndcg, hit_rate = get_metrics(
+        model, edge_index, exclude_edge_indices, k
+    )
 
-    return loss, recall, precision, ndcg
+    return loss, recall, precision, ndcg, hit_rate
 
 
 def structured_negative_sampling(
