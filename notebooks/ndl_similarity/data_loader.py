@@ -219,7 +219,7 @@ class UserUserDataset:
         Returns: torch.tensor of shape (3, num_edges) with positive and negative samples
         """
         num_nodes = maybe_num_nodes(edge_index)
-        row, col = edge_index.cpu()
+        row, col = edge_index.cpu() # row = user, col = article
 
         pos_idx = row * num_nodes + col
 
@@ -245,9 +245,9 @@ class UserUserDataset:
             mask = torch.from_numpy(np.isin(neg_idx, pos_idx)).to(torch.bool)
             rest = rest[mask]
 
-        self.source_pos_ind = edge_index[0]
-        self.target_pos_ind = edge_index[1]
-        self.target_neg_ind = unique_nodes[rand].to(edge_index.device)
+        self.source_pos_ind = edge_index[0] # user
+        self.target_pos_ind = edge_index[1] # article
+        self.target_neg_ind = unique_nodes[rand].to(edge_index.device) # article for non-existing edges
 
         return torch.stack(
             (self.source_pos_ind, self.target_pos_ind, self.target_neg_ind), dim=0
