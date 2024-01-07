@@ -41,7 +41,7 @@ class LightGCN(MessagePassing):
         Args:
             num_users (int): Number of users
             num_items (int): Number of items
-            embedding_dim (int, optional): Dimensionality of embeddings. Defaults to 8.
+            embedding_dim (int, optional): Dimensionality of embeddings. Defaults to 64.
             K (int, optional): Number of message passing layers. Defaults to 3.
             add_self_loops (bool, optional): Whether to add self loops for message passing. Defaults to False.
         """
@@ -356,8 +356,9 @@ def evaluation(
 def structured_negative_sampling(
     edge_index, num_nodes: Optional[int] = None, contains_neg_self_loops: bool = True
 ):
+    """Sample source user nodes, positive and negative target item nodes."""
+
     num_nodes = maybe_num_nodes(edge_index, num_nodes)
-    print(num_nodes)
 
     row, col = edge_index.cpu()
 

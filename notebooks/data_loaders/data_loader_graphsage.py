@@ -28,7 +28,7 @@ class UserUserDatasetGraphSAGE:
         self.verbose = verbose
         self._create_user_article_dataframe()  # creates mappings and edge_index
 
-    def _create_user_article_dataframe(self, subsampling_ratio=0.25):
+    def _create_user_article_dataframe(self, subsampling_ratio=0.5):
         """Creates user-article interaction dataframe from postings and votes dataframes"""
         if self.dataset_dict.get("postings") is not None:
             postings = self.dataset_dict.get("postings")
@@ -132,6 +132,7 @@ class UserUserDatasetGraphSAGE:
         # initialize graph with nodes and edges
         x = torch.tensor(self.nodes_enc, dtype=torch.long)
         self.graph = Data(x=x, edge_index=self.edge_index)
+        # self.graph = ToUndirected()(self.graph)
 
         # validate graph
         self.graph.validate(raise_on_error=True)
