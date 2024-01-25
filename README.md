@@ -46,6 +46,8 @@ For convenience we provide a conda environment file with all the dependencies. T
 
 ```conda env create -f environment.yml```
 
+Please note! The environment was tested on Linux machine with Ubuntu 22.04.3 LTS. In case there are some issues with installation of the environment, please contact us. 
+
 After the environment is installed, activate it:
 
 ```conda activate sna_link_prediction```
