@@ -16,8 +16,9 @@ The goal of this project is to explore the approaches for link prediction task o
 
 Please note! We don't provide data files in git repository owing to it's large size. Please put the data files in the data folder as shown below before running the code.
 
+```
 .
-├── data                            # data folder
+├── data                                            # data folder
 │   ├── Postings_01052019_15052019.csv              # postings data
 │   ├── Postings_16052019_31052019.csv              # postings data
 │   ├── Votes_01052019_15052019.csv                 # votes data
@@ -37,6 +38,7 @@ Please note! We don't provide data files in git repository owing to it's large s
 utils.py                                            # utility functions
 conda_environment.yml                               # conda environment file
 .gitignore                                          # gitignore file
+```
 
 ## How to run the code
 
