@@ -1,18 +1,51 @@
-# sna_link_prediction
-This repo contains the code for the Social Network Analysis group assignment (topic 11)
+# Group project for Social Network Analysis course. Topic 11: Link prediction.
 
-## How to run
-Install requirements: `conda env export > conda_environment.yml`
+## Group members
 
-## TODOs:
-* read up literature for link prediction
-* EDA: choose the graph, build basic visualizations
-Please creaete separate EDA jupyter notebooks
+- Grégoire de Lambertye - 12202211
+- Zsombor Iszak - 11709501
+- Roman Grebnev - 12202120
+- Emile Johnston - 12229987
+- Maximilian Maul - 11818418
 
-## Google doc with thoughts and links
-https://docs.google.com/document/d/1lZjLGZh1AX5KK8YthJvU6QkadWM9hi7HhJdT4QbSdko/edit
+## Project description
 
-## Google slides
-https://docs.google.com/presentation/d/1qbyRYBgFaQkx8Nz4ey3AZ-YIaqeNvosIZGN6IZpmK1A/edit?usp=sharing
+The goal of this project is to explore the approaches for link prediction task on "Der Standard" data. 
 
-Next meeting: At some point before the Christmas holidays.
+## Structure of the repository
+
+Please note! We don't provide data files in git repository owing to it's large size. Please put the data files in the data folder as shown below before running the code.
+
+.
+├── data                            # data folder
+│   ├── Postings_01052019_15052019.csv              # postings data
+│   ├── Postings_16052019_31052019.csv              # postings data
+│   ├── Votes_01052019_15052019.csv                 # votes data
+│   └── Votes_16052019_31052019.csv                 # votes data
+├── notebooks                                       # folder with notebooks and scripts for data preprocessing and utility code
+│   ├── data_loaders                                # folder with data loaders for deep learning approaches
+│   ├── graphsage                                   # folder with graph sage implementation
+│   ├── light_gcn                                   # folder with light gcn implementation
+│   ├── ndl_similarity                              # folder with non-deep learning similarity based approaches implementations
+│   ├── dl1_v1_graphsage_custom_sampling.ipynb      # graph sage training notebook using custom sampling
+│   ├── dl1_v2_graphsage_heterodata.ipynb           # graph sage training notebook using pyG sampling
+│   ├── dl2_lightgcn.ipynb                          # light gcn training notebook
+│   ├── graphs_definitions.ipynb                    # experiments with graph definitions
+│   ├── ndl_dataprep_dataloader.ipynb               # data preparation for non-deep learning approaches
+│   ├── ndl_modeling.ipynb                          # non-deep learning approaches modeling
+│   ├── ndl_result_visualization.ipynb              # non-deep learning approaches result visualization
+utils.py                                            # utility functions
+conda_environment.yml                               # conda environment file
+.gitignore                                          # gitignore file
+
+## How to run the code
+
+For convenience we provide a conda environment file with all the dependencies. To install the environment run the following command:
+
+```conda env create -f environment.yml```
+
+After the environment is installed, activate it:
+
+```conda activate sna_link_prediction```
+
+Installed environment can be used further to run the code in the notebooks.

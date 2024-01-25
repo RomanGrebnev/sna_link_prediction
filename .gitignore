@@ -1,4 +1,5 @@
 *.csv
 /data
 *.pt
+/notebooks/models
 __pycache__
