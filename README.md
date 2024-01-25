@@ -24,10 +24,16 @@ Please note! We don't provide data files in git repository owing to it's large s
 │   ├── Votes_01052019_15052019.csv                 # votes data
 │   └── Votes_16052019_31052019.csv                 # votes data
 ├── notebooks                                       # folder with notebooks and scripts for data preprocessing and utility code
+│   ├── notebooks_exploratory_data_analysis             # folder with notebooks for exploratory data analysis
+|   |   └── ...
 │   ├── data_loaders                                # folder with data loaders for deep learning approaches
+|   |   └── ...
 │   ├── graphsage                                   # folder with graph sage implementation
+|   |   └── ...
 │   ├── light_gcn                                   # folder with light gcn implementation
+|   |   └── ...
 │   ├── ndl_similarity                              # folder with non-deep learning similarity based approaches implementations
+|   |   └── ...
 │   ├── dl1_v1_graphsage_custom_sampling.ipynb      # graph sage training notebook using custom sampling
 │   ├── dl1_v2_graphsage_heterodata.ipynb           # graph sage training notebook using pyG sampling
 │   ├── dl2_lightgcn.ipynb                          # light gcn training notebook
@@ -35,7 +41,7 @@ Please note! We don't provide data files in git repository owing to it's large s
 │   ├── ndl_dataprep_dataloader.ipynb               # data preparation for non-deep learning approaches
 │   ├── ndl_modeling.ipynb                          # non-deep learning approaches modeling
 │   ├── ndl_result_visualization.ipynb              # non-deep learning approaches result visualization
-utils.py                                            # utility functions
+|   └── utils.py                                    # utility functions
 conda_environment.yml                               # conda environment file
 .gitignore                                          # gitignore file
 ```
